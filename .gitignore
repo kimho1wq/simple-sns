@@ -1,3 +1,6 @@
+**/front-end/node_modules/**
+**/front-end/static/**
+
 HELP.md
 .gradle
 build/
