@@ -2,8 +2,8 @@ package com.example.sns.controller;
 
 import com.example.sns.controller.request.UserJoinRequest;
 import com.example.sns.controller.request.UserLoginRequest;
-import com.example.sns.excpetion.ErrorCode;
-import com.example.sns.excpetion.SnsApplicationException;
+import com.example.sns.exception.ErrorCode;
+import com.example.sns.exception.SnsApplicationException;
 import com.example.sns.model.User;
 import com.example.sns.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -1,4 +1,4 @@
-package com.example.sns.excpetion;
+package com.example.sns.exception;
 
 import com.example.sns.controller.response.Response;
 import lombok.extern.slf4j.Slf4j;

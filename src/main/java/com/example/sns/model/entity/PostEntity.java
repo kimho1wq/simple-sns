@@ -1,6 +1,7 @@
 package com.example.sns.model.entity;
 
 import com.example.sns.model.UserRole;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,33 +13,35 @@ import java.sql.Timestamp;
 import java.time.Instant;
 
 @Entity
-@Table(name = "\"user\"")
+@Table(name = "\"post\"")
 @NoArgsConstructor
 @Getter
 @Setter
-@SQLDelete(sql = "UPDATE \"user\" SET deleted_at = NOW() where id=?")
+@SQLDelete(sql = "UPDATE \"post\" SET deleted_at = NOW() where id=?")
 @Where(clause = "deleted_at is NULL")
-public class UserEntity {
+public class PostEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="user_name")
-    private String userName;
+    @Column
+    private String title;
 
-    private String password;
+    @Column(columnDefinition = "TEXT")
+    private String body;
 
-    @Enumerated(EnumType.STRING)
-    private UserRole role = UserRole.USER;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
 
-    @Column(name="registered_at")
+    @Column
     private Timestamp registeredAt;
 
-    @Column(name="updated_at")
+    @Column
     private Timestamp updatedAt;
 
-    @Column(name="deleted_at")
+    @Column
     private Timestamp deletedAt;
 
     @PrePersist
@@ -51,10 +54,10 @@ public class UserEntity {
         this.updatedAt = Timestamp.from(Instant.now());
     }
 
-    public static UserEntity of(String userName, String password) {
-        UserEntity userEntity = new UserEntity();
-        userEntity.setUserName(userName);
-        userEntity.setPassword(password);
-        return userEntity;
+    @Builder
+    public PostEntity(String title, String body, UserEntity userEntity) {
+        this.title = title;
+        this.body = body;
+        this.user = userEntity;
     }
-}
+ }
