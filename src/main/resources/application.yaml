@@ -18,6 +18,34 @@ spring:
   sql:
     init:
       platform: postgres
+  redis:
+    url: redis://:p71627caf848813ae6040af37b3566e87c36e689a0d1217e59d41066dfbbed88a@ec2-52-206-138-39.compute-1.amazonaws.com:11289
+  kafka:
+    properties:
+      security.protocol: SASL_SSL
+      sasl.mechanism: SCRAM-SHA-256
+      sasl.jaas.config: org.apache.kafka.common.security.scram.ScramLoginModule required username="zp221hzz" password="";
+    consumer:
+      bootstrap-servers: dory0-1.srvs.cloudkafka.com:9094,dory0-2.srvs.cloudkafka.com:9094
+      group-id: alarm
+      auto-offset-reset: latest
+      key-deserializer: org.apache.kafka.common.serialization.IntegerDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+    listener:
+      ack-mode: MANUAL
+    producer:
+      bootstrap-servers: dory0-1.srvs.cloudkafka.com:9094,dory0-2.srvs.cloudkafka.com:9094
+      key-serializer: org.apache.kafka.common.serialization.IntegerSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        enable:
+          idempotence: false
+    topic:
+      alarm: zp221hzz-alarm
+
+
 
 jwt:
   secret-key: fast_campus.sns-application-2022.secret_key

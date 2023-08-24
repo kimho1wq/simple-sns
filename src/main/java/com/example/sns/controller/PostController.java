@@ -56,7 +56,7 @@ public class PostController {
     }
 
     @GetMapping("/{postId}/likes")
-    public Response<Integer> likeCount(@PathVariable Long postId) {
+    public Response<Long> likeCount(@PathVariable Long postId) {
         return Response.success(postService.likeCount(postId));
     }
 

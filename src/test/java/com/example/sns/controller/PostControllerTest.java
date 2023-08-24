@@ -70,12 +70,12 @@ public class PostControllerTest {
     public void 포스트수정() throws Exception {
         String title = "title";
         String body = "body";
-        String userName = "userName";
+        String username = "username";
         Long postId = 1L;
         Long userId = 1L;
 
         when(postService.modify(eq(title), eq(body), any(), any()))
-                .thenReturn(Post.fromEntity(PostEntityFixture.get(userName, postId, userId)));
+                .thenReturn(Post.fromEntity(PostEntityFixture.get(username, postId, userId)));
 
         mockMvc.perform(put("/api/v1/posts/1")
                         .contentType(MediaType.APPLICATION_JSON)

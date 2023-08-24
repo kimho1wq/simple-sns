@@ -24,8 +24,7 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="user_name")
-    private String userName;
+    private String username;
 
     private String password;
 
@@ -51,9 +50,9 @@ public class UserEntity {
         this.updatedAt = Timestamp.from(Instant.now());
     }
 
-    public static UserEntity of(String userName, String password) {
+    public static UserEntity of(String username, String password) {
         UserEntity userEntity = new UserEntity();
-        userEntity.setUserName(userName);
+        userEntity.setUsername(username);
         userEntity.setPassword(password);
         return userEntity;
     }

@@ -15,6 +15,6 @@ import java.util.Optional;
 
 @Repository
 public interface AlarmEntityRepository extends JpaRepository<AlarmEntity, Long> {
-    Page<AlarmEntity> findByUser(UserEntity user, Pageable pageable);
+    Page<AlarmEntity> findByUserId(Long userId, Pageable pageable);
 
 }

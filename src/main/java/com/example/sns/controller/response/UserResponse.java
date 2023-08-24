@@ -10,7 +10,7 @@ import lombok.Getter;
 public
 class UserResponse {
     private Long id;
-    private String userName;
+    private String username;
 
     public static UserResponse fromUser(User user) {
         return new UserResponse(
